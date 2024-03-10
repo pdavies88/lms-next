@@ -50,6 +50,10 @@ const CreatePage = () => {
       const data = await response.json(); // Parse the response body as JSON
 
       router.push(`/maintainer/courses/${data?.id}`);
+      toast({
+        variant: 'default',
+        title: 'Course created!',
+      });
     } catch {
       toast({
         variant: 'destructive',
