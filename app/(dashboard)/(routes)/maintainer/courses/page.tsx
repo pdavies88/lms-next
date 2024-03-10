@@ -3,7 +3,7 @@ import Link from 'next/link';
 const CoursesPage = () => {
   return (
     <div className='p-6'>
-      <Link href='/teacher/create'>
+      <Link href='/maintainer/create'>
         <Button>New Course</Button>
       </Link>
     </div>
