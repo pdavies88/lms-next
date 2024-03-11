@@ -5,8 +5,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { ToastAction } from '@/components/ui/toast';
-import { useToast } from '@/components/ui/use-toast';
 import {
   Form,
   FormControl,
@@ -18,6 +16,7 @@ import {
 } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { toast } from 'sonner';
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -26,7 +25,6 @@ const formSchema = z.object({
 });
 
 const CreatePage = () => {
-  const { toast } = useToast();
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -50,17 +48,9 @@ const CreatePage = () => {
       const data = await response.json(); // Parse the response body as JSON
 
       router.push(`/maintainer/courses/${data?.id}`);
-      toast({
-        variant: 'default',
-        title: 'Course created!',
-      });
+      toast.success('Course has been created');
     } catch {
-      toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.',
-        action: <ToastAction altText='Try again'>Try again</ToastAction>,
-      });
+      toast.error('Course has not been created');
     }
   };
 

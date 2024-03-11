@@ -32,3 +32,10 @@ STRIPE_WEBHOOK_SECRET=
 
 NEXT_PUBLIC_MAINTAINER_ID=
 ```
+
+## Prisma Commands
+
+- Initialize Prisma on Project: `npx prisma init`
+- Update Types and Definitions" `npx prisma generate`
+- Update your DB Schema: `npx prisma db push`
+- See your DB data: `npx prisma studio`
