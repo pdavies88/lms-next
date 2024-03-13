@@ -1,12 +1,19 @@
 import { auth } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
-import { LayoutDashboard } from 'lucide-react';
-
+import {
+  CircleDollarSign,
+  File,
+  LayoutDashboard,
+  ListChecks,
+} from 'lucide-react';
 import { db } from '@/lib/db';
 import { IconBadge } from '@/components/icon-badge';
 import { FormTitle } from '@/components/form-title';
 import { FormDescription } from '@/components/form-description';
 import { FormImage } from '@/components/form-image';
+import { FormCategory } from '@/components/form-category';
+import { FormPrice } from '@/components/form-price';
+import { FormAttachment } from '@/components/form-attachment';
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   const { userId } = auth();
@@ -18,6 +25,12 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   const course = await db.course.findUnique({
     where: {
       id: params.courseId,
+    },
+  });
+
+  const categories = await db.category.findMany({
+    orderBy: {
+      name: 'asc',
     },
   });
 
@@ -57,6 +70,34 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
           <FormTitle initialData={course} courseId={course.id} />
           <FormDescription initialData={course} courseId={course.id} />
           <FormImage initialData={course} courseId={course.id} />
+          <FormCategory
+            initialData={course}
+            courseId={course.id}
+            options={categories.map((category) => ({
+              label: category.name,
+              value: category.id,
+            }))}
+          />
+        </div>
+        <div className='space-y-6'>
+          <div>
+            <div className='flex items-center gap-x-2'>
+              <IconBadge icon={ListChecks} />
+              <h2 className='text-xl'>Course chapters</h2>
+            </div>
+            <div>TODO: Chapters</div>
+          </div>
+          <div>
+            <div className='flex items-center gap-x-2'>
+              <IconBadge icon={CircleDollarSign} />
+              <h2 className='text-xl'>Sell your course</h2>
+            </div>
+            <FormPrice initialData={course} courseId={course.id} />
+          </div>
+          <FormAttachment
+            initialData={{ ...course, attachments: [] }}
+            courseId={course.id}
+          />
         </div>
       </div>
     </div>
