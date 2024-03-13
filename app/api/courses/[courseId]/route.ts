@@ -16,6 +16,10 @@ export async function PATCH(
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
+    console.log('[COURSE_ID]', courseId);
+    console.log('[VALUES]', values);
+    console.log('[USER_ID]', userId);
+
     const course = await db.course.update({
       where: {
         id: courseId,
@@ -25,6 +29,8 @@ export async function PATCH(
         ...values,
       },
     });
+
+    console.log('[COURSE]', course);
 
     return NextResponse.json(course);
   } catch (error) {
