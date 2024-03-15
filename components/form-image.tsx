@@ -101,16 +101,12 @@ export const FormImage = ({ initialData, courseId }: FormImageProps) => {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              console.log(preview);
               if (preview) {
                 onSubmit({ imageUrl: preview as string });
               }
             }}>
-            <div {...getRootProps()} onChange={() => console.log('WORLD')}>
-              <input
-                {...getInputProps()}
-                onChange={() => console.log('HELLO')}
-              />
+            <div {...getRootProps()}>
+              <input {...getInputProps()} />
               {isDragActive ? (
                 <div className='flex items-center justify-center h-60 bg-slate-200 rounded-md'>
                   <p>Awaiting drop</p>
