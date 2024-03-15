@@ -13,7 +13,6 @@ import { FormDescription } from '@/components/form-description';
 import { FormImage } from '@/components/form-image';
 import { FormCategory } from '@/components/form-category';
 import { FormPrice } from '@/components/form-price';
-import { FormAttachment } from '@/components/form-attachment';
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   const { userId } = auth();
@@ -94,10 +93,6 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
             </div>
             <FormPrice initialData={course} courseId={course.id} />
           </div>
-          <FormAttachment
-            initialData={{ ...course, attachments: [] }}
-            courseId={course.id}
-          />
         </div>
       </div>
     </div>
