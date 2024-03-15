@@ -27,6 +27,7 @@ export const ListChapters = ({
   const [isMounted, setIsMounted] = useState(false);
   const [chapters, setChapters] = useState(items);
 
+  // Hack to prevent SSR issues with DND
   useEffect(() => {
     setIsMounted(true);
   }, []);
