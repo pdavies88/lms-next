@@ -19,7 +19,7 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
 import { toast } from 'sonner';
-import { ListChapters } from './list-chapters';
+import { ListChapters } from '../list-chapters';
 
 interface FormChaptersProps {
   initialData: Course & { chapters: Chapter[] };
