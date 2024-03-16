@@ -58,7 +58,7 @@ export const FormAction = ({
 
       toast.success('Course deleted');
       router.refresh();
-      router.push(`/teacher/courses`);
+      router.push(`/maintainer/courses`);
     } catch {
       toast.error('Something went wrong');
     } finally {
