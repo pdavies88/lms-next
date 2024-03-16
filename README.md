@@ -39,3 +39,12 @@ NEXT_PUBLIC_MAINTAINER_ID=
 - Update Types and Definitions" `npx prisma generate`
 - Update your DB Schema: `npx prisma db push`
 - See your DB data: `npx prisma studio`
+
+## Other Integrations
+
+- Tiptap
+- React Dropzone
+- React Hook Form
+- Zod
+- Shadcn
+- Hello Pangea Drag n Drop
