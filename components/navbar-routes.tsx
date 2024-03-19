@@ -1,14 +1,16 @@
 'use client';
 
-import { UserButton } from '@clerk/nextjs';
+import { UserButton, useAuth } from '@clerk/nextjs';
 import { usePathname } from 'next/navigation';
 import { LogOut } from 'lucide-react';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import { SearchInput } from './search-input';
+import { isMaintainer } from '@/lib/maintainer';
 
 export const NavbarRoutes = () => {
+  const { userId } = useAuth();
   const pathname = usePathname();
 
   const isMaintainerPage = pathname?.startsWith('/maintainer');
@@ -29,13 +31,13 @@ export const NavbarRoutes = () => {
               Exit
             </Button>
           </Link>
-        ) : (
+        ) : isMaintainer(userId) ? (
           <Link href='/maintainer/courses'>
             <Button size='sm' variant='ghost'>
               Maintainer mode
             </Button>
           </Link>
-        )}
+        ) : null}
         <UserButton afterSignOutUrl='/' />
       </div>
     </>
