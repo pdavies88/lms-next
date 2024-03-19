@@ -38,6 +38,13 @@ export async function POST(
       return new NextResponse('Not found', { status: 404 });
     }
 
+    await db.purchase.create({
+      data: {
+        courseId: course.id,
+        userId: user.id,
+      },
+    });
+
     return NextResponse.json({
       url: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${course.id}`,
     });
