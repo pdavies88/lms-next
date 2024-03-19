@@ -23,7 +23,7 @@ export const VideoPlayer = ({
   chapterId,
   nextChapterId,
   isLocked,
-  // completeOnEnd,
+  completeOnEnd,
   title,
 }: VideoPlayerProps) => {
   const router = useRouter();
@@ -31,26 +31,26 @@ export const VideoPlayer = ({
 
   const onEnd = async () => {
     try {
-      // if (completeOnEnd) {
-      await fetch(`/api/courses/${courseId}/chapters/${chapterId}/progress`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ isCompleted: true }),
-      });
+      if (completeOnEnd) {
+        await fetch(`/api/courses/${courseId}/chapters/${chapterId}/progress`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ isCompleted: true }),
+        });
 
-      if (!nextChapterId) {
-        confetti.onOpen();
+        if (!nextChapterId) {
+          confetti.onOpen();
+        }
+
+        toast.success('Progress updated');
+        router.refresh();
+
+        if (nextChapterId) {
+          router.push(`/courses/${courseId}/chapters/${nextChapterId}`);
+        }
       }
-
-      toast.success('Progress updated');
-      router.refresh();
-
-      if (nextChapterId) {
-        router.push(`/courses/${courseId}/chapters/${nextChapterId}`);
-      }
-      // }
     } catch {
       toast.error('Something went wrong');
     }
@@ -68,9 +68,11 @@ export const VideoPlayer = ({
         <>
           <iframe title={title} src={url} width='100%' height='100%' />
           <div className='flex justify-end'>
-            <Button className='mt-4' onClick={onEnd}>
-              {nextChapterId ? 'Next Chapter' : 'Complete Course'}
-            </Button>
+            {nextChapterId && (
+              <Button className='mt-4' onClick={onEnd}>
+                Next Chapter
+              </Button>
+            )}
           </div>
         </>
       )}
