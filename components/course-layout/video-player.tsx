@@ -13,7 +13,6 @@ interface VideoPlayerProps {
   chapterId: string;
   nextChapterId?: string;
   isLocked: boolean;
-  completeOnEnd: boolean;
   title: string;
 }
 
@@ -23,7 +22,6 @@ export const VideoPlayer = ({
   chapterId,
   nextChapterId,
   isLocked,
-  completeOnEnd,
   title,
 }: VideoPlayerProps) => {
   const router = useRouter();
@@ -31,25 +29,23 @@ export const VideoPlayer = ({
 
   const onEnd = async () => {
     try {
-      if (completeOnEnd) {
-        await fetch(`/api/courses/${courseId}/chapters/${chapterId}/progress`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ isCompleted: true }),
-        });
+      await fetch(`/api/courses/${courseId}/chapters/${chapterId}/progress`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ isCompleted: true }),
+      });
 
-        if (!nextChapterId) {
-          confetti.onOpen();
-        }
+      if (!nextChapterId) {
+        confetti.onOpen();
+      }
 
-        toast.success('Progress updated');
-        router.refresh();
+      toast.success('Progress updated');
+      router.refresh();
 
-        if (nextChapterId) {
-          router.push(`/courses/${courseId}/chapters/${nextChapterId}`);
-        }
+      if (nextChapterId) {
+        router.push(`/courses/${courseId}/chapters/${nextChapterId}`);
       }
     } catch {
       toast.error('Something went wrong');
@@ -57,25 +53,25 @@ export const VideoPlayer = ({
   };
 
   return (
-    <div className='relative aspect-video'>
-      {isLocked && (
-        <div className='absolute inset-0 flex items-center justify-center bg-slate-800 flex-col gap-y-2 text-secondary'>
-          <Lock className='h-8 w-8' />
-          <p className='text-sm'>This chapter is locked</p>
+    <>
+      <div className='relative aspect-video'>
+        {isLocked && (
+          <div className='absolute inset-0 flex items-center justify-center bg-slate-800 flex-col gap-y-2 text-secondary'>
+            <Lock className='h-8 w-8' />
+            <p className='text-sm'>This chapter is locked</p>
+          </div>
+        )}
+        {!isLocked && (
+          <iframe title={title} src={url} width='100%' height='100%' />
+        )}
+      </div>
+      {!isLocked && nextChapterId && (
+        <div className='flex justify-end'>
+          <Button className='mt-8' onClick={onEnd}>
+            Next Chapter
+          </Button>
         </div>
       )}
-      {!isLocked && (
-        <>
-          <iframe title={title} src={url} width='100%' height='100%' />
-          <div className='flex justify-end'>
-            {nextChapterId && (
-              <Button className='mt-4' onClick={onEnd}>
-                Next Chapter
-              </Button>
-            )}
-          </div>
-        </>
-      )}
-    </div>
+    </>
   );
 };
