@@ -3,6 +3,7 @@
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { Toolbar } from './toolbar';
+import Image from '@tiptap/extension-image';
 
 const Tiptap = ({
   description,
@@ -12,7 +13,7 @@ const Tiptap = ({
   onChange: (richText: string) => void;
 }) => {
   const editor = useEditor({
-    extensions: [StarterKit.configure()],
+    extensions: [StarterKit.configure(), Image],
     content: description,
     editorProps: {
       attributes: {
