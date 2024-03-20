@@ -1,7 +1,7 @@
 import { auth } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Eye, LayoutDashboard, Video } from 'lucide-react';
+import { ArrowLeft, Binary, Eye, LayoutDashboard, Video } from 'lucide-react';
 
 import { db } from '@/lib/db';
 import { IconBadge } from '@/components/icon-badge';
@@ -11,6 +11,7 @@ import { FormDescriptionChapter } from '@/components/chapters-form/form-descript
 import { FormAccessChapter } from '@/components/chapters-form/form-access';
 import { FormVideoChapter } from '@/components/chapters-form/form-video';
 import { FormActionChapter } from '@/components/chapters-form/form-action';
+import { FormCodeEmbed } from '@/components/chapters-form/form-code-embed';
 
 const ChapterIdPage = async ({
   params,
@@ -106,16 +107,29 @@ const ChapterIdPage = async ({
               />
             </div>
           </div>
-          <div>
-            <div className='flex items-center gap-x-2'>
-              <IconBadge icon={Video} />
-              <h2 className='text-xl'>Add a video</h2>
+          <div className='space-y-4'>
+            <div>
+              <div className='flex items-center gap-x-2'>
+                <IconBadge icon={Video} />
+                <h2 className='text-xl'>Add a video</h2>
+              </div>
+              <FormVideoChapter
+                initialData={chapter}
+                chapterId={params.chapterId}
+                courseId={params.courseId}
+              />
             </div>
-            <FormVideoChapter
-              initialData={chapter}
-              chapterId={params.chapterId}
-              courseId={params.courseId}
-            />
+            <div>
+              <div className='flex items-center gap-x-2'>
+                <IconBadge icon={Binary} />
+                <h2 className='text-xl'>Add a Code Editor Embed</h2>
+              </div>
+              <FormCodeEmbed
+                initialData={chapter}
+                chapterId={params.chapterId}
+                courseId={params.courseId}
+              />
+            </div>
           </div>
         </div>
       </div>
