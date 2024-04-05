@@ -33,6 +33,11 @@ NEXT_PUBLIC_APP_URL=http://localhost:3000
 NEXT_PUBLIC_MAINTAINER_ID=GETFROMCLERKAFTERLOGGINGIN
 ```
 
+## Database MySQL
+
+- Leveraging MySQL specifically for search integration with Prisma
+  - https://www.prisma.io/docs/orm/prisma-client/queries/full-text-search#mysql-1
+
 ## Prisma Commands
 
 - Initialize Prisma on Project: `npx prisma init`
