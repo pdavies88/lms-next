@@ -1,16 +1,7 @@
 'use client';
 
 import { Category } from '@prisma/client';
-import {
-  Atom,
-  Clapperboard,
-  Binary,
-  LineChart,
-  Music,
-  Camera,
-  Trophy,
-  LucideIcon,
-} from 'lucide-react';
+import { Binary, Braces, Code, Clipboard, LucideIcon } from 'lucide-react';
 
 import { CategoryItem } from './category-item';
 
@@ -19,13 +10,10 @@ interface CategoriesProps {
 }
 
 const iconMap: Record<Category['name'], LucideIcon> = {
-  Music: Music,
-  Photography: Camera,
-  Fitness: Trophy,
-  Accounting: LineChart,
-  'Computer Science': Binary,
-  Filming: Clapperboard,
-  Engineering: Atom,
+  'Front End Engineering': Code,
+  'Web Engineering': Binary,
+  'JavaScript Engineering': Braces,
+  'Project Management': Clipboard,
 };
 
 export const Categories = ({ items }: CategoriesProps) => {

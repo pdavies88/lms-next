@@ -94,6 +94,7 @@ export const FormDescriptionChapter = ({
           {!initialData.description && 'No description'}
           {initialData.description && (
             <div
+              className='tiptap bg-white p-2'
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(initialData.description),
               }}

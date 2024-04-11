@@ -26,7 +26,7 @@ const Tiptap = ({
   });
 
   return (
-    <div>
+    <div className='tiptap'>
       <Toolbar editor={editor} />
       <EditorContent editor={editor} />
     </div>

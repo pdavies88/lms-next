@@ -46,17 +46,22 @@ const ChapterIdPage = async ({
       )}
       <div className='flex flex-col p-8'>
         <h2 className='text-2xl font-semibold mb-4'>{chapter.title}</h2>
-        <VideoPlayer
-          chapterId={params.chapterId}
-          title={chapter.title}
-          courseId={params.courseId}
-          nextChapterId={nextChapter?.id}
-          url={chapter.videoUrl!}
-          isLocked={isLocked}
-        />
-        <Separator className='my-8' />
+        {chapter.videoUrl && (
+          <>
+            <VideoPlayer
+              chapterId={params.chapterId}
+              title={chapter.title}
+              courseId={params.courseId}
+              nextChapterId={nextChapter?.id}
+              url={chapter.videoUrl}
+              isLocked={isLocked}
+            />
+            <Separator className='my-8' />
+          </>
+        )}
         <div>
           <div
+            className='tiptap bg-white p-2'
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(chapter.description!),
             }}

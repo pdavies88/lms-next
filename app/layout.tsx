@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import './tiptap.css';
 import { ClerkProvider } from '@clerk/nextjs';
 import { ConfettiProvider } from '@/components/providers/confetti-provider';
 
