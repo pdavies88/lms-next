@@ -6,13 +6,19 @@
 npm i
 ```
 
-Then, run the development server:
+## Database: MySQL
 
-```bash
-npm run dev
-```
+- Use version: 8.0.X
+- Set up on Mac: https://www.geeksforgeeks.org/how-to-install-mysql-on-macos/
+- Leveraging MySQL specifically for search integration with Prisma
+  - https://www.prisma.io/docs/orm/prisma-client/queries/full-text-search#mysql-1
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Clerk
+
+- After account creation access your environment keys: https://clerk-docs-git-prettier-fixes.clerkpreview.com/quickstarts/nextjs/stable#set-environment-keys
+- After logging in to this application the first time via Clerk a user will be created for you.
+- In the Clerk Dashboard you can click `Users` in the side navigation and click on the user for yourself.
+- In your user profile you can find your `User ID` which can be copied into the environment variables for the project as the `MAINTAINER_ID`.
 
 ## Environment Variables
 
@@ -33,17 +39,20 @@ NEXT_PUBLIC_APP_URL=http://localhost:3000
 NEXT_PUBLIC_MAINTAINER_ID=GETFROMCLERKAFTERLOGGINGIN
 ```
 
-## Database MySQL
-
-- Leveraging MySQL specifically for search integration with Prisma
-  - https://www.prisma.io/docs/orm/prisma-client/queries/full-text-search#mysql-1
-
 ## Prisma Commands
 
 - Initialize Prisma on Project: `npx prisma init`
 - Update Types and Definitions" `npx prisma generate`
 - Update your DB Schema: `npx prisma db push`
 - See your DB data: `npx prisma studio`
+
+## Running Development Server
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Other Integrations
 
