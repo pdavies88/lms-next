@@ -56,9 +56,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Other Integrations
 
-- Tiptap
-- React Dropzone
-- React Hook Form
-- Zod
-- Shadcn
-- Hello Pangea Drag n Drop
+- Tiptap - https://tiptap.dev/docs/editor/examples/default
+- React Dropzone - https://react-dropzone.js.org/
+- React Hook Form - https://react-hook-form.com/
+- Zod - https://zod.dev/
+- Shadcn - https://ui.shadcn.com/
+- Hello Pangea Drag n Drop - https://dnd.hellopangea.com/
