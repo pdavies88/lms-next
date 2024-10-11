@@ -54,6 +54,11 @@ NEXT_PUBLIC_MAINTAINER_ID=user_GETFROMCLERKAFTERLOGGINGIN
 - Update your DB Schema: `npx prisma db push`
 - See your DB data: `npx prisma studio`
 
+## Seed our DB Categories
+```bash
+npm run seed
+```
+
 ## Running Development Server
 
 ```bash
