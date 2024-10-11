@@ -12,10 +12,18 @@ npm i
 - Set up on Mac: https://www.geeksforgeeks.org/how-to-install-mysql-on-macos/
 - Leveraging MySQL specifically for search integration with Prisma
   - https://www.prisma.io/docs/orm/prisma-client/queries/full-text-search#mysql-1
+- Keep track of your user, password, host, port, and database
+- Most default setups will be:
+  - user: root
+  - password: Whatever you set when you started MySQL
+  - host: localhost
+  - port: 3306
+  - data: Whatever you decided to name the one you created
 
 ## Clerk
 
-- After account creation access your environment keys: https://clerk-docs-git-prettier-fixes.clerkpreview.com/quickstarts/nextjs/stable#set-environment-keys
+- After account creation access your environment keys: https://clerk.com/docs/quickstarts/nextjs#set-your-environment-variables
+- Click on "Configure" then scroll to "Developers" and choose "API Keys"
 - After logging in to this application the first time via Clerk a user will be created for you.
 - In the Clerk Dashboard you can click `Users` in the side navigation and click on the user for yourself.
 - In your user profile you can find your `User ID` which can be copied into the environment variables for the project as the `MAINTAINER_ID`.
